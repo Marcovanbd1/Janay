@@ -3,471 +3,557 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mark Winterburn — For Janay Dorrance</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<title>An Applied Philosopher in the NHS</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --ink: #1a1a18;
-    --ink-mid: #4a4a45;
-    --ink-light: #8a8a82;
-    --paper: #f7f5f0;
-    --paper-warm: #ede9e0;
-    --accent: #2d5a3d;
-    --accent-light: #7ec49a;
-    --rule: rgba(45, 90, 61, 0.15);
-    --serif: 'Cormorant Garamond', Georgia, serif;
-    --mono: 'DM Mono', monospace;
-  }
+:root {
+  --ink: #1a1a17;
+  --ink-mid: #4a4a43;
+  --ink-faint: #96948c;
+  --paper: #f5f3ec;
+  --paper-warm: #eceae0;
+  --night: #141412;
+  --green: #28523a;
+  --green-pale: #79ba90;
+  --rule: rgba(40, 82, 58, 0.12);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --mono: 'DM Mono', monospace;
+}
 
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--serif);
-    font-weight: 300;
-    overflow-x: hidden;
-  }
+html { scroll-behavior: smooth; }
 
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 3rem;
-    background: rgba(247, 245, 240, 0.94);
-    backdrop-filter: blur(8px);
-    border-bottom: 0.5px solid var(--rule);
-  }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-weight: 300;
+  overflow-x: hidden;
+}
 
-  .nav-name {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    font-weight: 300;
-    letter-spacing: 0.13em;
-    color: var(--ink-mid);
-    text-transform: uppercase;
-  }
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1rem 3rem;
+  background: rgba(245,243,236,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .nav-for {
-    font-family: var(--mono);
-    font-size: 0.63rem;
-    font-weight: 300;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-  }
+.nav-left {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.13em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
 
-  section {
-    padding: 7rem 0 5rem;
-  }
+.nav-right {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--green);
+  letter-spacing: 0.09em;
+  opacity: 0.65;
+}
 
-  .container {
-    width: 100%;
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 3rem;
-  }
+.section-rule { width: 100%; height: 0.5px; background: var(--rule); }
 
-  .section-rule { width: 100%; height: 0.5px; background: var(--rule); }
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  width: 100%;
+}
 
-  .section-label {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    font-weight: 300;
-    letter-spacing: 0.18em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 2.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
+.tag {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--green);
+  text-transform: uppercase;
+  opacity: 0.72;
+  display: block;
+  margin-bottom: 3rem;
+}
 
-  .section-label span { color: var(--ink-light); font-size: 0.58rem; }
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 9rem 0 6rem;
+  background: var(--paper);
+  position: relative;
+}
 
-  /* HERO */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-  }
+.hero-ruled {
+  position: absolute;
+  top: 0; right: 0;
+  width: 40%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 44px,
+    var(--rule) 44px,
+    var(--rule) 45px
+  );
+  pointer-events: none;
+  opacity: 0.65;
+}
 
-  #hero::before {
-    content: '';
-    position: absolute;
-    top: 0; right: -8%;
-    width: 52%;
-    height: 100%;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 39px,
-      var(--rule) 39px,
-      var(--rule) 40px
-    );
-    opacity: 0.6;
-    pointer-events: none;
-  }
+h1 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.8rem, 5.8vw, 5.2rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 700px;
+  margin-bottom: 0;
+}
 
-  .hero-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    font-weight: 300;
-    letter-spacing: 0.16em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
+h1 em {
+  font-style: italic;
+  color: var(--green);
+}
 
-  .hero-label::before {
-    content: '';
-    display: block;
-    width: 2rem;
-    height: 0.5px;
-    background: var(--accent);
-  }
+.hero-sub {
+  font-family: var(--serif);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  font-weight: 300;
+  line-height: 1.82;
+  color: var(--ink-faint);
+  max-width: 440px;
+  margin-top: 2.8rem;
+  font-style: italic;
+}
 
-  h1 {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(2.8rem, 5.5vw, 4.6rem);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    margin-bottom: 1.5rem;
-  }
+.continue {
+  margin-top: 5rem;
+  font-family: var(--mono);
+  font-size: 0.57rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  opacity: 0.6;
+}
 
-  h1 em { font-style: italic; color: var(--accent); }
+.continue::after {
+  content: '';
+  display: inline-block;
+  width: 0; height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 4px solid var(--ink-faint);
+  animation: fall 2s ease-in-out infinite;
+}
 
-  .hero-sub {
-    font-family: var(--serif);
-    font-size: 1.15rem;
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--ink-mid);
-    max-width: 500px;
-    margin-bottom: 3rem;
-  }
+@keyframes fall {
+  0%,100% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(6px); opacity: 0.25; }
+}
 
-  .scroll-cue {
-    font-family: var(--mono);
-    font-size: 0.63rem;
-    letter-spacing: 0.14em;
-    color: var(--ink-light);
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
+/* SECTION 1 */
+#strange {
+  padding: 7rem 0;
+  background: var(--paper-warm);
+}
 
-  .scroll-cue::after {
-    content: '';
-    display: block;
-    width: 0; height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 5px solid var(--ink-light);
-    animation: bob 1.6s ease-in-out infinite;
-  }
+.strange-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  margin-top: 3.5rem;
+  align-items: start;
+}
 
-  @keyframes bob {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(4px); }
-  }
+h2 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+  line-height: 1.13;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
 
-  h2 {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(1.9rem, 3.8vw, 3rem);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    margin-bottom: 1.5rem;
-  }
+h2 em { font-style: italic; color: var(--green); }
 
-  h2 em { font-style: italic; color: var(--accent); }
+.prose {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--ink-mid);
+  margin: 0;
+}
 
-  p {
-    font-family: var(--serif);
-    font-size: 1.05rem;
-    font-weight: 300;
-    line-height: 1.82;
-    color: var(--ink-mid);
-    margin-bottom: 1.2rem;
-  }
+.prose em { font-style: italic; color: var(--ink); }
 
-  /* TIMELINE BLOCK */
-  #timeline { background: var(--paper-warm); }
+.prose + .prose { margin-top: 1.4rem; }
 
-  .timeline {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 0;
-    margin-top: 0.5rem;
-  }
+.stanza {
+  margin-top: 3rem;
+  padding-left: 1.3rem;
+  border-left: 0.5px solid rgba(40,82,58,0.2);
+}
 
-  .tl-row {
-    display: contents;
-  }
+.stanza p {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.82;
+  color: var(--ink-faint);
+  font-style: italic;
+  margin: 0;
+}
 
-  .tl-year {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    font-weight: 300;
-    color: var(--ink-light);
-    letter-spacing: 0.08em;
-    padding: 1.6rem 2rem 1.6rem 0;
-    border-right: 0.5px solid var(--rule);
-    text-align: right;
-    line-height: 1.4;
-  }
+.stanza p + p { margin-top: 0.5rem; }
 
-  .tl-content {
-    padding: 1.6rem 0 1.6rem 2rem;
-    border-bottom: 0.5px solid var(--rule);
-    position: relative;
-  }
+/* SECTION 2 */
+#moment {
+  padding: 7rem 0;
+  background: var(--paper);
+}
 
-  .tl-content::before {
-    content: '';
-    position: absolute;
-    left: -4px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-    opacity: 0.5;
-  }
+.moment-intro {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 620px;
+  margin-top: 3rem;
+  letter-spacing: -0.005em;
+}
 
-  .tl-row:last-child .tl-content { border-bottom: none; }
+.moment-intro em { font-style: italic; color: var(--green); }
 
-  .tl-role {
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: var(--ink);
-    margin-bottom: 0.3rem;
-  }
+.doc-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 3rem;
+  border: 0.5px solid var(--rule);
+}
 
-  .tl-org {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 0.6rem;
-  }
+.doc { padding: 2.2rem; }
 
-  .tl-note {
-    font-family: var(--serif);
-    font-size: 0.95rem;
-    font-weight: 300;
-    line-height: 1.7;
-    color: var(--ink-mid);
-    margin: 0;
-  }
+.doc:first-child { border-right: 0.5px solid var(--rule); }
 
-  /* WHY SECTION */
-  #why { background: var(--paper); }
+.doc-date {
+  font-family: var(--mono);
+  font-size: 0.57rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  color: var(--green);
+  text-transform: uppercase;
+  opacity: 0.7;
+  display: block;
+  margin-bottom: 0.7rem;
+}
 
-  .why-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 0.5rem;
-  }
+.doc-title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 0.9rem;
+}
 
-  .why-item {
-    padding: 2rem 0;
-    border-top: 0.5px solid var(--rule);
-  }
+.doc-body {
+  font-family: var(--serif);
+  font-size: 0.93rem;
+  font-weight: 300;
+  line-height: 1.78;
+  color: var(--ink-mid);
+  margin: 0;
+}
 
-  .why-num {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    margin-bottom: 0.8rem;
-  }
+.junction {
+  margin-top: 2.5rem;
+  padding: 2.4rem 2.6rem;
+  background: var(--night);
+  position: relative;
+  overflow: hidden;
+}
 
-  .why-title {
-    font-family: var(--serif);
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: var(--ink);
-    margin-bottom: 0.6rem;
-    line-height: 1.3;
-  }
+.junction::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 32%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 18px,
+    rgba(255,255,255,0.022) 18px,
+    rgba(255,255,255,0.022) 19px
+  );
+  pointer-events: none;
+}
 
-  .why-body {
-    font-family: var(--serif);
-    font-size: 0.98rem;
-    font-weight: 300;
-    line-height: 1.78;
-    color: var(--ink-mid);
-    margin: 0;
-  }
+.junction p {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.65;
+  color: rgba(245,243,236,0.78);
+  max-width: 580px;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
 
-  /* PULLQUOTE */
-  .pullquote {
-    border-left: 2px solid var(--accent);
-    padding-left: 1.5rem;
-    margin: 2.5rem 0;
-  }
+.junction p em {
+  color: var(--green-pale);
+  font-style: normal;
+}
 
-  .pullquote p {
-    font-size: 1.25rem;
-    line-height: 1.65;
-    font-style: italic;
-    color: var(--ink);
-    margin: 0;
-  }
+/* SECTION 3 */
+#person {
+  padding: 7rem 0;
+  background: var(--paper-warm);
+}
 
-  /* ASK */
-  #ask { background: var(--ink); }
+.life-table {
+  margin-top: 3rem;
+  max-width: 640px;
+}
 
-  #ask .section-label { color: rgba(247,245,240,0.38); }
-  #ask .section-label span { color: rgba(247,245,240,0.2); }
-  #ask h2 { color: var(--paper); }
-  #ask h2 em { color: var(--accent-light); }
-  #ask p { color: rgba(247,245,240,0.68); }
+.life-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 2rem;
+  padding: 1.3rem 0;
+  border-bottom: 0.5px solid var(--rule);
+  align-items: baseline;
+}
 
-  .cta-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 2.5rem;
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    font-weight: 300;
-    letter-spacing: 0.12em;
-    color: var(--accent-light);
-    text-transform: uppercase;
-    text-decoration: none;
-    border-bottom: 0.5px solid var(--accent-light);
-    padding-bottom: 0.2rem;
-  }
+.life-row:first-child { border-top: 0.5px solid var(--rule); }
 
-  /* FOOTER */
-  #foot { background: var(--paper); padding: 3rem 0; }
+.life-era {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: 300;
+  letter-spacing: 0.09em;
+  color: var(--ink-faint);
+  line-height: 1.5;
+}
 
-  .foot-inner {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    border-top: 0.5px solid var(--rule);
-    padding-top: 2rem;
-  }
+.life-what {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--ink-mid);
+  line-height: 1.65;
+  margin: 0;
+}
 
-  .foot-sig {
-    font-family: var(--serif);
-    font-size: 1.9rem;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--ink);
-  }
+.life-what em { font-style: italic; color: var(--ink); }
 
-  .foot-contact p {
-    font-family: var(--mono);
-    font-size: 0.63rem;
-    font-weight: 300;
-    letter-spacing: 0.09em;
-    color: var(--ink-light);
-    margin: 0;
-    line-height: 1.85;
-    text-align: right;
-  }
+.person-coda {
+  margin-top: 3rem;
+  max-width: 580px;
+}
 
-  .foot-contact a { color: var(--accent); text-decoration: none; }
+.person-coda p {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--ink-mid);
+  margin: 0;
+}
 
-  /* FADE */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
+.person-coda p + p { margin-top: 1.3rem; }
 
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
+.person-coda p em { font-style: italic; color: var(--ink); }
 
-  @media (max-width: 640px) {
-    nav { padding: 1rem 1.5rem; }
-    .container { padding: 0 1.5rem; }
-    .timeline { grid-template-columns: 80px 1fr; }
-    .tl-year { font-size: 0.58rem; padding-right: 1rem; }
-    .tl-content { padding-left: 1.2rem; }
-    .why-grid { grid-template-columns: 1fr; gap: 0; }
-    .foot-inner { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
-    .foot-contact p { text-align: left; }
-  }
+.scrollsite-note {
+  margin-top: 2.5rem;
+  padding-left: 1.2rem;
+  border-left: 0.5px solid rgba(40,82,58,0.18);
+}
+
+.scrollsite-note p {
+  font-family: var(--mono);
+  font-size: 0.61rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--green);
+  opacity: 0.65;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* SECTION 4 */
+#door {
+  padding: 7rem 0 8rem;
+  background: var(--ink);
+}
+
+#door .tag { color: rgba(245,243,236,0.28); }
+
+.door-statement {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.9rem, 3.8vw, 3.2rem);
+  line-height: 1.2;
+  color: var(--paper);
+  letter-spacing: -0.015em;
+  max-width: 660px;
+  margin-top: 2.5rem;
+}
+
+.door-statement em {
+  font-style: italic;
+  color: var(--green-pale);
+}
+
+.door-note {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.88;
+  color: rgba(245,243,236,0.4);
+  max-width: 500px;
+  margin-top: 2rem;
+}
+
+.door-base {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 0.5px solid rgba(245,243,236,0.08);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.door-sig {
+  font-family: var(--serif);
+  font-size: 1.9rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(245,243,236,0.5);
+}
+
+.door-details { text-align: right; }
+
+.door-details p {
+  font-family: var(--mono);
+  font-size: 0.59rem;
+  font-weight: 300;
+  letter-spacing: 0.09em;
+  color: rgba(245,243,236,0.28);
+  line-height: 1.95;
+  margin: 0;
+}
+
+.door-details a {
+  color: var(--green-pale);
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.door-wait {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.16em;
+  color: rgba(245,243,236,0.18);
+  text-transform: uppercase;
+  text-align: right;
+}
+
+/* FADE */
+.fi {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fi.on { opacity: 1; transform: translateY(0); }
+
+/* MOBILE */
+@media (max-width: 660px) {
+  nav { padding: 1rem 1.5rem; }
+  .wrap { padding: 0 1.5rem; }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.8rem; }
+  .strange-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .doc-pair { grid-template-columns: 1fr; }
+  .doc:first-child { border-right: none; border-bottom: 0.5px solid var(--rule); }
+  .life-row { grid-template-columns: 90px 1fr; gap: 1.2rem; }
+  .door-base { flex-direction: column; align-items: flex-start; }
+  .door-details { text-align: left; }
+  .door-wait { text-align: left; }
+}
 </style>
 </head>
 <body>
 
 <nav>
-  <span class="nav-name">Mark Winterburn</span>
-  <span class="nav-for">prepared for Janay Dorrance</span>
+  <span class="nav-left">Neighbourhood CoLab CIC</span>
+  <span class="nav-right">for Janay Dorrance</span>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="container">
-    <div class="hero-label">Neighbourhood CoLab CIC</div>
+  <div class="hero-ruled"></div>
+  <div class="wrap">
     <h1>
-      Eleven years inside<br>
-      <em>Google Creative Lab.</em><br>
-      You know what<br>unusual looks like.
+      What is an Applied<br>
+      Philosopher doing<br>
+      inside <em>the NHS?</em>
     </h1>
     <p class="hero-sub">
-      I'm an Applied Philosopher working inside the NHS. I think this is a conversation worth having.
+      Something that didn't exist before. Something that might matter quite a lot right now.
     </p>
-    <div class="scroll-cue">Read on</div>
+    <div class="continue">Keep reading</div>
   </div>
 </section>
 
 <div class="section-rule"></div>
 
-<!-- TIMELINE: JANAY'S ARC -->
-<section id="timeline">
-  <div class="container">
-    <div class="section-label fade-in">Your arc at the Lab <span>01</span></div>
-    <h2 class="fade-in">Eleven years reading<br><em>creative minds.</em></h2>
-    <p class="fade-in" style="max-width: 560px; margin-bottom: 2.5rem;">
-      You spent over a decade at Google Creative Lab — first as Operations Manager, then as Talent Lead. That is not an administrative career. It is a sustained, high-resolution study of how creative intelligence actually works.
-    </p>
-    <div class="timeline fade-in">
-      <div class="tl-row">
-        <div class="tl-year">Jul 2012<br>Jan 2018</div>
-        <div class="tl-content">
-          <p class="tl-org">Google Creative Lab</p>
-          <p class="tl-role">Operations Manager</p>
-          <p class="tl-note">Five and a half years building the infrastructure that lets creative people do their best work. Understanding how a Lab functions is understanding how creative cognition needs to be held.</p>
+<!-- SECTION 1: THE STRANGENESS -->
+<section id="strange">
+  <div class="wrap">
+    <span class="tag fi">01 &nbsp;—&nbsp; the strangeness of it</span>
+    <div class="strange-grid">
+      <div class="fi">
+        <h2>Philosophy<br>is not a<br><em>clinical skill.</em></h2>
+        <div class="stanza">
+          <p>And yet.</p>
+          <p>Here we are.</p>
         </div>
       </div>
-      <div class="tl-row">
-        <div class="tl-year">Jan 2018<br>Jul 2023</div>
-        <div class="tl-content">
-          <p class="tl-org">Google Creative Lab</p>
-          <p class="tl-role">Talent Lead</p>
-          <p class="tl-note">Five and a half years identifying the people who don't fit conventional categories — designers who code, writers who build, thinkers who defy labels. That is a metacognitive discipline. You have to hold a model of the mind to recognise one.</p>
-        </div>
-      </div>
-      <div class="tl-row">
-        <div class="tl-year">May 2022<br>Dec 2024</div>
-        <div class="tl-content">
-          <p class="tl-org">King's College London</p>
-          <p class="tl-role">MSc Psychology &amp; Neuroscience of Mental Health</p>
-          <p class="tl-note">Researching the effects of sound-based stimulation on slow-wave sleep and neuroprotective processes in preclinical Alzheimer's. The Lab years weren't a departure from this — they were the same question asked from a different angle.</p>
-        </div>
+      <div>
+        <p class="prose fi">
+          The NHS does not traditionally hire Applied Philosophers. It hires clinicians, administrators, analysts, project managers. People with defined roles and defined outputs. The system is built for legibility — for people who can be placed on an org chart without ambiguity.
+        </p>
+        <p class="prose fi">
+          An Applied Philosopher resists that. The discipline is concerned with one thing: <em>how do people actually think, decide, behave and suffer</em> — and what can be built, designed or organised to serve that better? It is not abstract. It is radically practical. It just operates at a level of abstraction that most institutions don't have the patience for.
+        </p>
+        <p class="prose fi">
+          The NHS, at this particular moment, needs exactly that patience. Because what it is attempting — reorganising itself around the human being in the place where they live — is a design problem before it is a logistics one. And someone is working on it from the inside.
+        </p>
       </div>
     </div>
   </div>
@@ -475,76 +561,106 @@
 
 <div class="section-rule"></div>
 
-<!-- WHY THIS CONVERSATION -->
-<section id="why">
-  <div class="container">
-    <div class="section-label fade-in">Why this conversation <span>02</span></div>
-    <h2 class="fade-in">An applied philosopher<br>in an <em>unusual place.</em></h2>
-    <div class="pullquote fade-in">
-      <p>"The Lab has always asked: what happens at the edge of technology and human meaning? That is precisely the question I work with every day — inside the NHS, for 74,000 people."</p>
+<!-- SECTION 2: THE MOMENT -->
+<section id="moment">
+  <div class="wrap">
+    <span class="tag fi">02 &nbsp;—&nbsp; the moment</span>
+    <p class="moment-intro fi">
+      Two documents landed in quick succession. Together they represent the most significant reorientation of the NHS in a generation. The neighbourhood is now <em>the unit.</em>
+    </p>
+    <div class="doc-pair fi">
+      <div class="doc">
+        <span class="doc-date">July 2025</span>
+        <p class="doc-title">NHS 10 Year Plan</p>
+        <p class="doc-body">Care moves from hospital to community. From reactive to preventive. From institution to place. The plan names the neighbourhood as the primary site of health — not the ward, not the referral pathway. The street. The home. The life being lived.</p>
+      </div>
+      <div class="doc">
+        <span class="doc-date">March 2026</span>
+        <p class="doc-title">NHS Neighbourhood Health Framework</p>
+        <p class="doc-body">Operational shape to that ambition. How teams form across boundaries that previously didn't speak. How data flows without losing the person it belongs to. How technology serves the human in the place — rather than the system's need to account for them.</p>
+      </div>
     </div>
-    <div class="why-grid fade-in">
-      <div class="why-item">
-        <p class="why-num">01</p>
-        <p class="why-title">I build thinking environments</p>
-        <p class="why-body">My background spans broadcast television direction, Ashtanga yoga teaching in India, work as a prison officer, and now NHS neighbourhood health. Each phase was a study in how environments shape cognition and how people perform under pressure.</p>
-      </div>
-      <div class="why-item">
-        <p class="why-num">02</p>
-        <p class="why-title">I identify pattern across domains</p>
-        <p class="why-body">Applied Philosophy is the practice of bringing rigorous thinking to bear on real problems in the world. I hold a BA in Applied Philosophy and Political Studies and a Postgraduate Diploma in Psychology. I use them daily.</p>
-      </div>
-      <div class="why-item">
-        <p class="why-num">03</p>
-        <p class="why-title">I invented a format</p>
-        <p class="why-body">I created the Scrollsite: a bespoke single-page artefact built for a specific person before a specific meeting. A mirror, pointed at the reader. I've built over 250 of them. You're reading one now.</p>
-      </div>
-      <div class="why-item">
-        <p class="why-num">04</p>
-        <p class="why-title">I operate through a CIC</p>
-        <p class="why-body">Neighbourhood CoLab CIC is the Community Interest Company through which I take on freelance engagements. Co-founded with an NHS nurse, a clinical psychologist, and a social worker — each with 25 years of frontline experience.</p>
-      </div>
+    <div class="junction fi">
+      <p>
+        This is a <em>design problem at civilisational scale.</em> Someone working inside it — who thinks philosophically, builds practically, and understands both the policy and the person — is sitting at a junction that very few people occupy. Google DeepMind is working on health. Google Creative Lab is working on what technology means to people. That junction exists in Dorset right now.
+      </p>
     </div>
   </div>
 </section>
 
 <div class="section-rule"></div>
 
-<!-- THE ASK -->
-<section id="ask">
-  <div class="container fade-in">
-    <div class="section-label">The ask <span>03</span></div>
-    <h2>Not an application.<br>A <em>conversation.</em></h2>
-    <p style="max-width: 580px;">
-      You spent five and a half years finding people who don't fit conventional categories. I am one of those people. I'd like to understand whether there is freelance work at or around Google Creative Lab where an Applied Philosopher with deep NHS and systems experience would be genuinely useful.
-    </p>
-    <p style="max-width: 580px;">
-      I'm not chasing a job title. I'm curious about where your world and mine might intersect — and I suspect the answer is more interesting than either of us can see from here.
-    </p>
-    <a href="mailto:hello@neighbourhoodcolab.co.uk" class="cta-link">Start the conversation →</a>
+<!-- SECTION 3: THE PERSON -->
+<section id="person">
+  <div class="wrap">
+    <span class="tag fi">03 &nbsp;—&nbsp; the person, briefly</span>
+
+    <div class="life-table fi">
+      <div class="life-row">
+        <span class="life-era">BBC · Channel 4<br>ITV · BT Sport</span>
+        <p class="life-what">Playout Director through the analogue to digital transition. <em>Fifteen years learning how attention works under pressure, at scale, live.</em></p>
+      </div>
+      <div class="life-row">
+        <span class="life-era">Mysore · Dorchester</span>
+        <p class="life-what">Ashtanga yoga teacher. Studied in India. <em>Learning what the body knows that the mind hasn't caught up with yet.</em></p>
+      </div>
+      <div class="life-row">
+        <span class="life-era">HMP Portland</span>
+        <p class="life-what">Prison officer. <em>Learning what happens when a system removes a person's agency entirely — and what it takes to hold someone's humanity inside that.</em></p>
+      </div>
+      <div class="life-row">
+        <span class="life-era">Weymouth and Portland PCN</span>
+        <p class="life-what">Digital and Transformation Lead. Five GP practices. 74,000 patients on the Dorset coast. <em>Building the neighbourhood health infrastructure the NHS now says it needs.</em></p>
+      </div>
+    </div>
+
+    <div class="person-coda fi">
+      <p>
+        He holds a BA in Applied Philosophy and Political Studies and a Postgraduate Diploma in Psychology. He describes himself as an Opsimath — someone who arrives at knowledge late, by an unusual route, and finds that the detour was the point.
+      </p>
+      <p>
+        He co-founded Neighbourhood CoLab CIC with three colleagues: an NHS nurse, a clinical psychologist, and a social worker. Between the four of them, over a century of frontline experience. The CIC is how he works with the outside world.
+      </p>
+    </div>
+
+    <div class="scrollsite-note fi">
+      <p>
+        He invented a format called the Scrollsite — a bespoke single-page artefact built for one person before one conversation. A mirror, pointed carefully at the reader. He has built over 250 of them. You are reading one now.
+      </p>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<section id="foot">
-  <div class="container">
-    <div class="foot-inner">
-      <div class="foot-sig">Mark Winterburn</div>
-      <div class="foot-contact">
+<div class="section-rule"></div>
+
+<!-- SECTION 4: THE OPEN DOOR -->
+<section id="door">
+  <div class="wrap">
+    <span class="tag fi">04 &nbsp;—&nbsp; a door, left open</span>
+    <p class="door-statement fi">
+      An Applied Philosopher working inside the NHS, at the moment it is redesigning itself around the human being, is <em>a rare thing.</em> Worth knowing about. Worth a conversation, when the time is right.
+    </p>
+    <p class="door-note fi">
+      This was built for Janay Dorrance, because the shape of her career suggested she would find it interesting. That instinct may be wrong. If it is right, she knows where to find him.
+    </p>
+    <div class="door-base fi">
+      <div class="door-sig">Mark Winterburn</div>
+      <div class="door-details">
         <p>Digital and Transformation Lead</p>
         <p>Weymouth and Portland PCN</p>
-        <p style="margin-top: 0.4rem;">Co-Director, <a href="mailto:hello@neighbourhoodcolab.co.uk">Neighbourhood CoLab CIC</a></p>
+        <p style="margin-top:0.3rem;">Co-Director, Neighbourhood CoLab CIC</p>
         <p><a href="mailto:hello@neighbourhoodcolab.co.uk">hello@neighbourhoodcolab.co.uk</a></p>
+        <span class="door-wait">No urgency. This will keep.</span>
       </div>
     </div>
   </div>
 </section>
 
 <script>
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fi').forEach(el => io.observe(el));
 </script>
 
 </body>
