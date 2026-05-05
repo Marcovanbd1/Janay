@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mark Winterburn — For Janay Dorrance</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-mid: #4a4a45;
+    --ink-light: #8a8a82;
+    --paper: #f7f5f0;
+    --paper-warm: #ede9e0;
+    --accent: #2d5a3d;
+    --accent-light: #7ec49a;
+    --rule: rgba(45, 90, 61, 0.15);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(247, 245, 240, 0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--rule);
+  }
+
+  .nav-name {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 300;
+    letter-spacing: 0.13em;
+    color: var(--ink-mid);
+    text-transform: uppercase;
+  }
+
+  .nav-for {
+    font-family: var(--mono);
+    font-size: 0.63rem;
+    font-weight: 300;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  section {
+    padding: 7rem 0 5rem;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+
+  .section-rule { width: 100%; height: 0.5px; background: var(--rule); }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-label span { color: var(--ink-light); font-size: 0.58rem; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: -8%;
+    width: 52%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      var(--rule) 39px,
+      var(--rule) 40px
+    );
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 0.5px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em { font-style: italic; color: var(--accent); }
+
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--ink-mid);
+    max-width: 500px;
+    margin-bottom: 3rem;
+  }
+
+  .scroll-cue {
+    font-family: var(--mono);
+    font-size: 0.63rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .scroll-cue::after {
+    content: '';
+    display: block;
+    width: 0; height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid var(--ink-light);
+    animation: bob 1.6s ease-in-out infinite;
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.8vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 em { font-style: italic; color: var(--accent); }
+
+  p {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.82;
+    color: var(--ink-mid);
+    margin-bottom: 1.2rem;
+  }
+
+  /* TIMELINE BLOCK */
+  #timeline { background: var(--paper-warm); }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0;
+    margin-top: 0.5rem;
+  }
+
+  .tl-row {
+    display: contents;
+  }
+
+  .tl-year {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    letter-spacing: 0.08em;
+    padding: 1.6rem 2rem 1.6rem 0;
+    border-right: 0.5px solid var(--rule);
+    text-align: right;
+    line-height: 1.4;
+  }
+
+  .tl-content {
+    padding: 1.6rem 0 1.6rem 2rem;
+    border-bottom: 0.5px solid var(--rule);
+    position: relative;
+  }
+
+  .tl-content::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+
+  .tl-row:last-child .tl-content { border-bottom: none; }
+
+  .tl-role {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .tl-org {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .tl-note {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ink-mid);
+    margin: 0;
+  }
+
+  /* WHY SECTION */
+  #why { background: var(--paper); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 0.5rem;
+  }
+
+  .why-item {
+    padding: 2rem 0;
+    border-top: 0.5px solid var(--rule);
+  }
+
+  .why-num {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+  }
+
+  .why-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .why-body {
+    font-family: var(--serif);
+    font-size: 0.98rem;
+    font-weight: 300;
+    line-height: 1.78;
+    color: var(--ink-mid);
+    margin: 0;
+  }
+
+  /* PULLQUOTE */
+  .pullquote {
+    border-left: 2px solid var(--accent);
+    padding-left: 1.5rem;
+    margin: 2.5rem 0;
+  }
+
+  .pullquote p {
+    font-size: 1.25rem;
+    line-height: 1.65;
+    font-style: italic;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  /* ASK */
+  #ask { background: var(--ink); }
+
+  #ask .section-label { color: rgba(247,245,240,0.38); }
+  #ask .section-label span { color: rgba(247,245,240,0.2); }
+  #ask h2 { color: var(--paper); }
+  #ask h2 em { color: var(--accent-light); }
+  #ask p { color: rgba(247,245,240,0.68); }
+
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--accent-light);
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--accent-light);
+    padding-bottom: 0.2rem;
+  }
+
+  /* FOOTER */
+  #foot { background: var(--paper); padding: 3rem 0; }
+
+  .foot-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-top: 0.5px solid var(--rule);
+    padding-top: 2rem;
+  }
+
+  .foot-sig {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .foot-contact p {
+    font-family: var(--mono);
+    font-size: 0.63rem;
+    font-weight: 300;
+    letter-spacing: 0.09em;
+    color: var(--ink-light);
+    margin: 0;
+    line-height: 1.85;
+    text-align: right;
+  }
+
+  .foot-contact a { color: var(--accent); text-decoration: none; }
+
+  /* FADE */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.5rem; }
+    .container { padding: 0 1.5rem; }
+    .timeline { grid-template-columns: 80px 1fr; }
+    .tl-year { font-size: 0.58rem; padding-right: 1rem; }
+    .tl-content { padding-left: 1.2rem; }
+    .why-grid { grid-template-columns: 1fr; gap: 0; }
+    .foot-inner { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+    .foot-contact p { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Mark Winterburn</span>
+  <span class="nav-for">prepared for Janay Dorrance</span>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-label">Neighbourhood CoLab CIC</div>
+    <h1>
+      Eleven years inside<br>
+      <em>Google Creative Lab.</em><br>
+      You know what<br>unusual looks like.
+    </h1>
+    <p class="hero-sub">
+      I'm an Applied Philosopher working inside the NHS. I think this is a conversation worth having.
+    </p>
+    <div class="scroll-cue">Read on</div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- TIMELINE: JANAY'S ARC -->
+<section id="timeline">
+  <div class="container">
+    <div class="section-label fade-in">Your arc at the Lab <span>01</span></div>
+    <h2 class="fade-in">Eleven years reading<br><em>creative minds.</em></h2>
+    <p class="fade-in" style="max-width: 560px; margin-bottom: 2.5rem;">
+      You spent over a decade at Google Creative Lab — first as Operations Manager, then as Talent Lead. That is not an administrative career. It is a sustained, high-resolution study of how creative intelligence actually works.
+    </p>
+    <div class="timeline fade-in">
+      <div class="tl-row">
+        <div class="tl-year">Jul 2012<br>Jan 2018</div>
+        <div class="tl-content">
+          <p class="tl-org">Google Creative Lab</p>
+          <p class="tl-role">Operations Manager</p>
+          <p class="tl-note">Five and a half years building the infrastructure that lets creative people do their best work. Understanding how a Lab functions is understanding how creative cognition needs to be held.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">Jan 2018<br>Jul 2023</div>
+        <div class="tl-content">
+          <p class="tl-org">Google Creative Lab</p>
+          <p class="tl-role">Talent Lead</p>
+          <p class="tl-note">Five and a half years identifying the people who don't fit conventional categories — designers who code, writers who build, thinkers who defy labels. That is a metacognitive discipline. You have to hold a model of the mind to recognise one.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">May 2022<br>Dec 2024</div>
+        <div class="tl-content">
+          <p class="tl-org">King's College London</p>
+          <p class="tl-role">MSc Psychology &amp; Neuroscience of Mental Health</p>
+          <p class="tl-note">Researching the effects of sound-based stimulation on slow-wave sleep and neuroprotective processes in preclinical Alzheimer's. The Lab years weren't a departure from this — they were the same question asked from a different angle.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- WHY THIS CONVERSATION -->
+<section id="why">
+  <div class="container">
+    <div class="section-label fade-in">Why this conversation <span>02</span></div>
+    <h2 class="fade-in">An applied philosopher<br>in an <em>unusual place.</em></h2>
+    <div class="pullquote fade-in">
+      <p>"The Lab has always asked: what happens at the edge of technology and human meaning? That is precisely the question I work with every day — inside the NHS, for 74,000 people."</p>
+    </div>
+    <div class="why-grid fade-in">
+      <div class="why-item">
+        <p class="why-num">01</p>
+        <p class="why-title">I build thinking environments</p>
+        <p class="why-body">My background spans broadcast television direction, Ashtanga yoga teaching in India, work as a prison officer, and now NHS neighbourhood health. Each phase was a study in how environments shape cognition and how people perform under pressure.</p>
+      </div>
+      <div class="why-item">
+        <p class="why-num">02</p>
+        <p class="why-title">I identify pattern across domains</p>
+        <p class="why-body">Applied Philosophy is the practice of bringing rigorous thinking to bear on real problems in the world. I hold a BA in Applied Philosophy and Political Studies and a Postgraduate Diploma in Psychology. I use them daily.</p>
+      </div>
+      <div class="why-item">
+        <p class="why-num">03</p>
+        <p class="why-title">I invented a format</p>
+        <p class="why-body">I created the Scrollsite: a bespoke single-page artefact built for a specific person before a specific meeting. A mirror, pointed at the reader. I've built over 250 of them. You're reading one now.</p>
+      </div>
+      <div class="why-item">
+        <p class="why-num">04</p>
+        <p class="why-title">I operate through a CIC</p>
+        <p class="why-body">Neighbourhood CoLab CIC is the Community Interest Company through which I take on freelance engagements. Co-founded with an NHS nurse, a clinical psychologist, and a social worker — each with 25 years of frontline experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- THE ASK -->
+<section id="ask">
+  <div class="container fade-in">
+    <div class="section-label">The ask <span>03</span></div>
+    <h2>Not an application.<br>A <em>conversation.</em></h2>
+    <p style="max-width: 580px;">
+      You spent five and a half years finding people who don't fit conventional categories. I am one of those people. I'd like to understand whether there is freelance work at or around Google Creative Lab where an Applied Philosopher with deep NHS and systems experience would be genuinely useful.
+    </p>
+    <p style="max-width: 580px;">
+      I'm not chasing a job title. I'm curious about where your world and mine might intersect — and I suspect the answer is more interesting than either of us can see from here.
+    </p>
+    <a href="mailto:hello@neighbourhoodcolab.co.uk" class="cta-link">Start the conversation →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section id="foot">
+  <div class="container">
+    <div class="foot-inner">
+      <div class="foot-sig">Mark Winterburn</div>
+      <div class="foot-contact">
+        <p>Digital and Transformation Lead</p>
+        <p>Weymouth and Portland PCN</p>
+        <p style="margin-top: 0.4rem;">Co-Director, <a href="mailto:hello@neighbourhoodcolab.co.uk">Neighbourhood CoLab CIC</a></p>
+        <p><a href="mailto:hello@neighbourhoodcolab.co.uk">hello@neighbourhoodcolab.co.uk</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
